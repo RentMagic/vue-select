@@ -1,13 +1,20 @@
 <template>
   <div id="app">
-    <v-select v-model="selected" v-bind="config" />
+    <v-select ref="test" :value="selected"        @open="handleDropdownOpened"
+
+
+              @open-ref="handleRefClick"
+              @keyup-enter="handleEnterKeyPress"
+              @keyup-backspace="handleBackspacePress"
+              @option-selected="handleChange"
+              @option-deselected="handleChange"
+              @open-create-entity="handleCreateEntityClick"    @search="handleSearch" @input="selected = $event" v-bind="config" />
   </div>
 </template>
 
 <script>
 import vSelect from '../src/components/Select.vue'
 import countries from '../docs/.vuepress/data/countryCodes'
-import books from '../docs/.vuepress/data/books'
 
 export default {
   components: { vSelect },
@@ -16,7 +23,17 @@ export default {
     config: {
       options: countries,
     },
+    searchQueue: [],
   }),
+  methods: {
+    handleSearch(value) {
+      this.searchQueue.push(value);
+      this.$nextTick(this.processSearchQueue);
+    },
+    processSearchQueue() {
+      console.log("test")
+    }
+  }
 }
 </script>
 

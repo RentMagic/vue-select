@@ -32,18 +32,24 @@
             >
               {{ getOptionLabel(option) }}
             </slot>
-            <button
+            <slot
               v-if="multiple"
-              ref="deselectButtons"
-              :disabled="disabled"
-              type="button"
-              class="vs__deselect"
-              :title="`Deselect ${getOptionLabel(option)}`"
-              :aria-label="`Deselect ${getOptionLabel(option)}`"
+              name="deselect-button"
+              v-bind="normalizeOptionForSlot(option)"
               @click="deselect(option)"
-            >
-              <component :is="childComponents.Deselect" />
-            </button>
+              >
+                <button
+                  v-if="multiple"
+                  ref="deselectButtons"
+                  :disabled="disabled"
+                  type="button"
+                  class="vs__deselect"
+                  :title="`Deselect ${getOptionLabel(option)}`"
+                  :aria-label="`Deselect ${getOptionLabel(option)}`"
+                >
+                  <component :is="childComponents.Deselect" />
+                </button>
+              </slot>
           </span>
         </slot>
 
@@ -56,7 +62,9 @@
         </slot>
       </div>
 
+
       <div ref="actions" class="vs__actions">
+        <slot name="clear-button" v-bind="scope.actions"  @click="clearSelection">
         <button
           v-show="showClearButton"
           ref="clearButton"
@@ -65,10 +73,11 @@
           class="vs__clear"
           title="Clear Selected"
           aria-label="Clear Selected"
-          @click="clearSelection"
+
         >
           <component :is="childComponents.Deselect" />
         </button>
+        </slot>
 
         <slot name="open-indicator" v-bind="scope.openIndicator">
           <component
@@ -155,6 +164,8 @@ export default defineComponent({
   directives: { appendToBody },
 
   mixins: [pointerScroll, typeAheadPointer, ajax],
+
+  emits: ['option:created', 'option:selecting', 'option:selected', 'option:deselecting', 'option:deselected', 'input', 'search:blur', 'search:focus', 'open', 'close'],
 
   props: {
     value: {},

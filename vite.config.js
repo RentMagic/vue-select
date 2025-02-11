@@ -16,7 +16,7 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: './src/main.js',
+      entry: './src/index.js',
       name: 'VueSelect',
       fileName: (format) => `vue-select.${format}.js`
     },
