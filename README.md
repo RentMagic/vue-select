@@ -3,7 +3,9 @@
 > **Everything you wish the HTML `<select>` element could do, wrapped up into a lightweight, zero
 > dependency, extensible Vue component.**
 
-Vue Select is a feature rich select/dropdown/typeahead component. It provides a default
+**This package is a modified version of vue-select updated to Vue 3 in its most basic form with minor changes we needed for our project.**
+
+Vue Select is a feature-rich select/dropdown/typeahead component. It provides a default
 template that fits most use cases for a filterable select dropdown. The component is designed to be as
 lightweight as possible, while maintaining high standards for accessibility,
 developer experience, and customization.
@@ -24,8 +26,6 @@ developer experience, and customization.
 Complete documentation and examples available at https://vue-select.org.
 
 - **[API Documentation](https://vue-select.org)**
-- **[Vue 2 CodePen Template](https://codepen.io/pen?template=VwdrdzG)**
-- **[Vue 3 CodePen Template](https://codepen.io/pen?template=NpwrQO)**
 
 ## Sponsors :tada:
 
@@ -36,34 +36,14 @@ Huge thanks to the [sponsors](https://github.com/sponsors/sagalbot) and [contrib
 
 ## Get started
 
-**Vue 3 / Vue Select 4.x-beta**
-
-> Vue 3 support is on the `beta` channel: `vue-select@beta`, and will become the new default when `v4` is released. See [#1579](https://github.com/sagalbot/vue-select/issues/1597) for more details!
+**Vue 3 only**
 
 Install:
 
 ```bash
-yarn add vue-select@beta
-
-# or use npm
-
-npm install vue-select@beta
+yarn add @rentmagic/vue-select
 ```
 
-Then, import and register the component:
-
-```js
-# main.ts or main.js
-
-import { createApp } from "vue";
-import App from "./App.vue";
-
-import { VueSelect } from "vue-select";
-
-createApp(App)
-    .component("v-select", VueSelect)
-    .mount("#app");
-```
 
 The component itself does not include any CSS. You'll need to include it separately in your Component.vue:
 ```vue
@@ -72,35 +52,30 @@ The component itself does not include any CSS. You'll need to include it separat
 </style>
 ```
 
-**Vue 2 / Vue Select 3.x**
+Example usage in a Vue 3 component:
 
-Install:
+```vue
+<template>
+  <div>
+    <v-select :options="['Option 1', 'Option 2', 'Option 3']"></v-select>
+  </div>
+</template>
 
-```bash
-yarn add vue-select
+<script>
+import VueSelect from "@rentmagic/vue-select";
 
-# or use npm
+export default {
+  components: {
+    'v-select': VueSelect
+  }
+};
+</script>
 
-npm install vue-select
+<style>
+@import "vue-select/dist/vue-select.css";
+</style>
 ```
 
-Then, import and register the component:
-
-```js
-import Vue from "vue";
-import vSelect from "vue-select";
-
-Vue.component("v-select", vSelect);
-```
-
-The component itself does not include any CSS. You'll need to include it separately:
-
-```js
-import "vue-select/dist/vue-select.css";
-```
-
-You can also include vue-select directly in the browser. Check out the
-[documentation for loading from CDN.](https://vue-select.org/guide/install.html#in-the-browser).
 
 ## License
 

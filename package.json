@@ -2,7 +2,7 @@
     "name": "@rentmagic/vue-select",
     "version": "3.20.4",
     "description": "Everything you wish the HTML <select> element could do, wrapped up into a lightweight, extensible Vue component.",
-    "author": "Jeff Sagal <sagalbot@gmail.com>",
+    "author": "Jeff Sagal <sagalbot@gmail.com>, Dwayne Hulsman <dhulsman@infodatek.com>",
     "homepage": "https://vue-select.org",
     "directories": {
         "doc": "docs",
