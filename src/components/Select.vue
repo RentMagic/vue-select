@@ -688,9 +688,14 @@ export default {
      * @return {boolean}
      */
     isTrackingValues() {
+      // Vue 3 compatibility: Check if reduce prop was explicitly passed
+      // In Vue 2, we used this.$options.propsData.hasOwnProperty('reduce')
+      // In Vue 3, we need to check if the reduce function is not the default
+      const hasReduceProp = this.reduce !== this.$options.props.reduce.default
+
       return (
         typeof this.value === 'undefined' ||
-        this.$options.propsData.hasOwnProperty('reduce')
+        hasReduceProp
       )
     },
 
